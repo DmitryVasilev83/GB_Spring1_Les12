@@ -25,6 +25,13 @@ insert into user_role (user_id, role_id)
 values (1, 2),
        (2, 1);
 
+       // DZ 12
+insert into authority (permission)
+values ('cart.add');
+
+insert into role_authority (authority_id, role_id)
+values (5, 1),
+       (5, 2);
 
 -- insert into MANUFACTURER (name) values ('Oxford Industries, Inc.');
 -- insert into MANUFACTURER (name) values ('CHS Inc');
