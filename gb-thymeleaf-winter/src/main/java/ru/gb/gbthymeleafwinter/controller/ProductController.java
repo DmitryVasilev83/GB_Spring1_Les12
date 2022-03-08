@@ -63,4 +63,27 @@ public class ProductController {
         return "redirect:/product/all";
     }
 
+    // DZ_12
+    @GetMapping("/cart")
+    @PreAuthorize("hasAuthority('cart.add')")
+    public String getProductListFromCart(Model model){
+        model.addAttribute("cartProducts", productService.findAllInCart());
+        return "cart-list";
+    }
+
+    @GetMapping("/cart/add/{productId}")
+    @PreAuthorize("hasAuthority('cart.add')")
+    public String addProductToCart(@PathVariable("productId") Long id){
+        productService.addProductToCart(id);
+        return "redirect:/product/all";
+    }
+
+    @GetMapping("/cart/delete/{productId}")
+    @PreAuthorize("hasAuthority('cart.add')")
+    public String deleteProductFromCartById(@PathVariable("productId") Long id){
+        productService.deleteProductFromCart(id);
+        return "redirect:/product/cart";
+    }
+
+
 }
